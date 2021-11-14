@@ -28,7 +28,7 @@ import com.livraria.apirest.services.LivroService;
 
 @RestController
 @RequestMapping(value="/api")
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 public class LivroController {
 	
 	@Autowired
@@ -37,6 +37,16 @@ public class LivroController {
 	@GetMapping("/livros")
 	public List<Livro> listaLivros(){
 		return livroService.todosLivros();
+	}
+	
+	@GetMapping("/disponiveis")
+	public List<Livro> listaDisponiveis(){
+		return livroService.livrosDisponiveis();
+	}
+	
+	@GetMapping("/maisalugados")
+	public List<Livro> listaMaisAlugados(){
+		return livroService.livrosMaisAluados();
 	}
 	
 	@GetMapping("/livro/{id}")

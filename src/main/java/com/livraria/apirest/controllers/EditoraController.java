@@ -27,7 +27,7 @@ import com.livraria.apirest.services.EditoraService;
 
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 public class EditoraController {
 
 	@Autowired

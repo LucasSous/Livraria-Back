@@ -21,6 +21,16 @@ public class LivroService {
 		return listLivros;
 	}
 	
+	public List<Livro> livrosDisponiveis(){
+		List<Livro> listDisponiveis = livroRepository.findList();
+		return listDisponiveis;
+	}
+	
+	public List<Livro> livrosMaisAluados(){
+		List<Livro> listMaisAlugados = livroRepository.findLivros();
+		return listMaisAlugados;
+	}
+	
 	public Livro buscarPorId(Long id) {
 		Optional<Livro> opitionalLivro = livroRepository.findById(id);
 		Livro livro = null;

@@ -27,7 +27,7 @@ import com.livraria.apirest.services.AluguelService;
 
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 public class AluguelController {
 
 	@Autowired

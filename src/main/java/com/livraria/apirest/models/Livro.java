@@ -12,7 +12,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Range;
+
 
 @Entity
 @Table(name="TB_LIVRO")
@@ -38,9 +38,11 @@ public class Livro implements Serializable {
 	@NotNull(message = "Campo não preenchido, informe o ano de lançamento do livro!")
 	private int lancamento;
 	
-	@Range(min=1,message="A quantidade minima de livros é 1!")
+	
 	@NotNull(message = "Campo não informado!")
 	private int quantidade;
+	
+	private int totalalugado;
 
 	public long getId() {
 		return id;
@@ -88,6 +90,14 @@ public class Livro implements Serializable {
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public int getTotalalugado() {
+		return totalalugado;
+	}
+
+	public void setTotalalugado(int totalalugado) {
+		this.totalalugado = totalalugado;
 	}
 
 	

@@ -29,6 +29,7 @@ public class Livro implements Serializable {
 	private String nome;
 	
 	@OneToOne
+	@NotNull(message = "Campo não informado!")
 	private Editora editora;
 	
 	@NotBlank(message = "Campo não informado!")
@@ -37,7 +38,6 @@ public class Livro implements Serializable {
 	@Digits(integer = 4, fraction = 4, message = "o ano deve ter 4 digitos")
 	@NotNull(message = "Campo não preenchido, informe o ano de lançamento do livro!")
 	private int lancamento;
-	
 	
 	@NotNull(message = "Campo não informado!")
 	private int quantidade;

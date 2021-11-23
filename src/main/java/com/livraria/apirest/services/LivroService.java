@@ -1,5 +1,6 @@
 package com.livraria.apirest.services;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +40,24 @@ public class LivroService {
 	}
 	
 	public Livro salvarLivro(Livro livro) {
-		Livro saveLivro = livroRepository.save(livro);
-		return saveLivro;
+		
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		
+		if(livro.getLancamento() < 999 || livro.getLancamento() > year) {
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"lançamento não foi informado corretamente.");
+		}else if(livro.getQuantidade() <= 0){
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"Quantidade de livros não pode ser menor que 1.");
+		}else if(livro.getTotalalugado() != 0){
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"A quantidade de total de livros alugados deve iniciar em 0!");
+		}else {
+		
+			Livro saveLivro = livroRepository.save(livro);
+			return saveLivro;
+		}
+		
 	}
 	
 	public void deletarLivro(Livro livro) {
@@ -53,8 +70,23 @@ public class LivroService {
 	}
 	
 	public Livro alterarLivro (Livro livro) {
-		Livro atualizarLivro = livroRepository.save(livro);
-		return atualizarLivro;
+		
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		 
+		
+		if(livro.getLancamento() < 999 || livro.getLancamento() > year) {
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"lançamento não foi informado corretamente.");
+		}else if(livro.getQuantidade() < 0){
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"A quantidade de livros não pode ser negativa!");
+		}else {
+			Livro atualizarLivro = livroRepository.save(livro);
+			return atualizarLivro;
+		}
+		
+		
+		
 	}
 
 }

@@ -69,7 +69,7 @@ public class LivroController {
 		return livroService.alterarLivro(livro);
 	}
 	
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String, String> handleValidationException(MethodArgumentNotValidException ex){
 		

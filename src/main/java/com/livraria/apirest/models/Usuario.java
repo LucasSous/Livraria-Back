@@ -2,6 +2,7 @@ package com.livraria.apirest.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,7 @@ public class Usuario implements Serializable{
 	@NotBlank(message = "Campo não informado!")
 	private String cidade;
 	
+	@Column(unique = true)
 	@Email(message = "O e-mail digitado não é válido!")
 	@NotBlank(message = "Campo não informado!")
 	private String email;

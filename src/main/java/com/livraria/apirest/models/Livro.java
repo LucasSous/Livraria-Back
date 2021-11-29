@@ -2,6 +2,7 @@ package com.livraria.apirest.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Livro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Column(unique = true)
 	@NotBlank(message = "Campo não informado!")
 	private String nome;
 	

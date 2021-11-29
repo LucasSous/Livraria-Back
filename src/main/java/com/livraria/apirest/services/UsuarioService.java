@@ -29,8 +29,15 @@ public class UsuarioService {
 	}
 	
 	public Usuario salvarUsuario(Usuario usuario) {
-		Usuario saveUsuario = usuarioRepository.save(usuario);
-		return saveUsuario;
+		
+		try {
+			Usuario saveUsuario = usuarioRepository.save(usuario);
+			return saveUsuario;
+		} catch (DataIntegrityViolationException e) {
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"Este endereço de e-mail já existe no sistema!");
+		}
+		
 	}
 	
 	public void deletarUsuario(Usuario usuario) {
@@ -43,8 +50,13 @@ public class UsuarioService {
 	}
 	
 	public Usuario alterarUsuario (Usuario usuario) {
-		Usuario atualizarUsuario = usuarioRepository.save(usuario);
-		return atualizarUsuario;
+		try {
+			Usuario atualizarUsuario = usuarioRepository.save(usuario);
+			return atualizarUsuario;
+		} catch (DataIntegrityViolationException e) {
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"Este endereço de e-mail já existe no sistema!");
+		}
 	}
 	
 }

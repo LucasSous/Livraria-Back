@@ -54,8 +54,14 @@ public class LivroService {
 					"A quantidade de total de livros alugados deve iniciar em 0!");
 		}else {
 		
-			Livro saveLivro = livroRepository.save(livro);
-			return saveLivro;
+			try {
+				Livro saveLivro = livroRepository.save(livro);
+				return saveLivro;
+			} catch (Exception e) {
+				throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+						"Este livro já existe,tente novamente com outro nome!");
+			}
+			
 		}
 		
 	}
@@ -65,7 +71,7 @@ public class LivroService {
 			livroRepository.delete(livro);
 		} catch (DataIntegrityViolationException e) {
 			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
-					"Este Livro não pode ser deletado! Possui associação com Alugueis.");
+					"Este Livro não pode ser deletado! Possui associação com Aluguéis.");
 		}
 	}
 	
@@ -81,8 +87,13 @@ public class LivroService {
 			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
 					"A quantidade de livros não pode ser negativa!");
 		}else {
-			Livro atualizarLivro = livroRepository.save(livro);
-			return atualizarLivro;
+			try {
+				Livro atualizarLivro = livroRepository.save(livro);
+				return atualizarLivro;
+			} catch (Exception e) {
+				throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+						"Este livro já existe,tente novamente com outro nome!");
+			}
 		}
 		
 		

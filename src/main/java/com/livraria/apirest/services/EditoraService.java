@@ -29,8 +29,14 @@ public class EditoraService {
 	}
 	
 	public Editora salvaEditora(Editora editora) {
-		Editora saveEditora = editoraRepository.save(editora);
-		return saveEditora;
+		
+		try {
+			Editora saveEditora = editoraRepository.save(editora);
+			return saveEditora;
+		} catch (Exception e) {
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"Esta editora já existe,tente novamente com outro nome!");
+		}
 	}
 	
 	public void deletarEditora (Editora editora) {
@@ -43,8 +49,13 @@ public class EditoraService {
 	}
 	
 	public Editora alterarEditora(Editora editora) {
-		Editora atualizarEditora = editoraRepository.save(editora);
-		return atualizarEditora;
+		try {
+			Editora atualizarEditora = editoraRepository.save(editora);
+			return atualizarEditora;
+		} catch (Exception e) {
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"Esta editora já existe,tente novamente com outro nome!");
+		}
 	}
 
 }

@@ -78,6 +78,8 @@ public class LivroService {
 	public Livro alterarLivro (Livro livro) {
 		
 		int year = Calendar.getInstance().get(Calendar.YEAR);
+		
+		Livro livroo = livroRepository.findById(livro.getId());
 		 
 		
 		if(livro.getLancamento() < 999 || livro.getLancamento() > year) {
@@ -86,6 +88,9 @@ public class LivroService {
 		}else if(livro.getQuantidade() < 0){
 			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
 					"A quantidade de livros não pode ser negativa!");
+		}else if(livroo.getTotalalugado() != livro.getTotalalugado()){
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"O total de livros alugados não pode ser alterado!" + "(" + livroo.getTotalalugado() + ")");
 		}else {
 			try {
 				Livro atualizarLivro = livroRepository.save(livro);

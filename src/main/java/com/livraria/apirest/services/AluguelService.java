@@ -63,9 +63,13 @@ public class AluguelService {
 	public void deletarAluguel(Aluguel aluguel) {
 		
 		Livro livro = livroRepository.findById(aluguel.getLivro_id().getId());
-		
+		if(aluguel.getData_devolucao() != null) {
+			throw new com.livraria.apirest.services.excepitions.DataIntegrityViolationException(
+					"Este aluguel não pode ser deletado");
+		}else {
 		livro.setTotalalugado(livro.getTotalalugado() - 1);
 		aluguelRepository.delete(aluguel);
+		}
 	}
 	
 	public Aluguel alterarAluguel (Aluguel aluguel) {

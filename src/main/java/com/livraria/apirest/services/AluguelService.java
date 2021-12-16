@@ -76,6 +76,7 @@ public class AluguelService {
 					"Este aluguel não pode ser deletado");
 		}else {
 		livro.setTotalalugado(livro.getTotalalugado() - 1);
+		livro.setQuantidade(livro.getQuantidade() +1);
 		aluguelRepository.delete(aluguel);
 		}
 	}
